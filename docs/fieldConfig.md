@@ -35,3 +35,68 @@ This is called on submit. The value you return from here will be present in the 
 ### `[key: string]: any;`
 
 You can add any additional fields to your field config. Could be a `tab` field for example, if your form is split into multiple sections/tabs.
+
+```ts
+type Context {
+  [key: string]: any
+}
+
+type ComponentProps = {
+  field: FieldProp;
+  [key: string]: any;
+};
+
+type PropsObject = {
+  schema?: any;
+  validate?: (value: any) => undefined | string | Promise<any>;
+  [key: string]: any;
+};
+
+
+type FieldProp = {
+  value: any;
+  error?: string;
+  onChange: (value: any) => void;
+  onBlur: () => void;
+  focusRef: React.RefObject<{ focus: () => void; [key: string]: any }>;
+};
+
+type FormProp = {
+  values: { [key: string]: any };
+  errors: { [key: string]: string | undefined };
+};
+
+type FormPropWithMutations = {
+  values: { [key: string]: any };
+  errors: { [key: string]: string | undefined };
+  setValue: (name: string, value: any) => void;
+  setError: (name: string, error?: string) => void;
+  validateField: (name: string) => void;
+};
+
+export type UpdateReason = {
+  name: string;
+  type: ChangeType;
+};
+
+export type ChangeType = "value" | "error" | "blur";
+
+type FieldConfig<Context = IndexObject, Props = PropsObject> = {
+  component: React.FC<Props>;
+  props: (context: Context, form: FormProp) => Props;
+  deps?: string[];
+  initState?: (
+    context: Context
+  ) => {
+    value?: any;
+    error?: string | undefined;
+  };
+  effect?: (
+    context: Context,
+    form: FormPropWithMutations,
+    reason: UpdateReason
+  ) => void;
+  transform?: (context: Context, form: FormProp, value: any) => any;
+  [key: string]: any;
+};
+```

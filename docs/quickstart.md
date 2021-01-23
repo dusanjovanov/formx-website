@@ -170,7 +170,8 @@ export const App = () => {
 
 We're using the Form component and we're passing it 4 things:
 
-- `form` - Your form class
+- `config` - Your config object
 - `onSubmit` - Function that will be called when you submit if all fields are valid. It will be called with values and transformed values.
 - `context` - External dependencies. In this case, it's a person object that we get from the server.
 - `ref`- Ref to the Form component. We use this to reset the form from the outside when the person object arrives from the server.
+- `applyProps` - Function that receives the name and config of the field whose props will be merged and overriden by what this fn returns.
