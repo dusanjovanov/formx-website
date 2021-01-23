@@ -1,0 +1,16 @@
+{
+  "docs": {
+    "General": ["overview", "quickstart"]
+  },
+  "docs-other": {
+    "API": [
+      "form",
+      "fieldConfig",
+      "ComponentProps",
+      "FormProp",
+      "useSubscribe",
+      "formProp",
+      "updateReason"
+    ]
+  }
+}
